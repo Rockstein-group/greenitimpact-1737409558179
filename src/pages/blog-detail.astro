@@ -1,0 +1,72 @@
+---
+import Seo from "../components/Seo.astro";
+import { Image } from "astro:assets";
+import imgimages_gii_logo_webp from "../../public/images/gii_logo.webp";
+import imgimages_menu_bar_webp from "../../public/images/menu-bar.webp";
+import imgimages_gii_source_info_webp from "../../public/images/gii_source_info.webp";
+import imgimages_gii_footer_social_webp from "../../public/images/gii_footer_social.webp";
+import '../styles/global.css';
+---
+
+<html lang="en">
+	<head>
+		
+        <script>
+        import { showToast } from "../components/toast";
+        (() => {
+          const els = [...document.querySelectorAll('form')];
+          if (!els?.length) return;
+          els.forEach(el => {
+            console.log("Test 1")
+            el.addEventListener('submit', async (e) => {
+              console.log("Test 2")
+              e.preventDefault();
+              const formData = new FormData(e.target);
+              const formObject = Object.fromEntries(formData);
+              formObject.emailUser = "simon.c@green-web.fr";
+              console.log("formObject",formObject)
+              console.log("Test 3")
+              try {
+                console.log("Test 4")
+                const response = await fetch('https://app.ecobuilder.io/api/send-mail-contact', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(formObject)
+                });
+                console.log("Test 5")
+                if (!response.ok) {
+                  throw new Error('Network response was not ok');
+                }
+                console.log("Test 6")
+                const result = await response.json();
+                showToast('Form submitted successfully!');
+                console.log('Form submitted successfully:', result);
+              } catch (error) {
+                console.error('Error submitting form:', error);
+                showToast('Error submitting form', 'error');
+              }
+            });
+          });
+        })();
+      </script>
+        <Seo seo={{ title: "EcoBuilder", description: "Page description", keywords: "", canonical: "", image: '', type: "website", themeColor: "#ffffff"}} />
+		<meta charset="utf-8" />
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href="/favicon.svg"
+		/>
+		<meta
+			name="viewport"
+			content="width=device-width"
+		/>
+		<meta
+			name="generator"
+			content={Astro.generator}
+		/>
+		<title>Astro</title>
+	</head>
+	<body> <header class="flex flex-col relative shrink-0 box-border h-auto empty:min-h-[30vh] before:content-[&#x27;Header&#x27;] before:absolute before:top-0 before:left-0 before:inline-block before:py-1 before:px-2 before:bg-black/20 before:text-white before:text-sm before:rounded before:!rounded-tl-none before:!rounded-bl-none mb-[1px] header-section"><div class="header-component w-full bg-slate-800 shadow-[0px_4px_16px_rgba(0,0,0,0.08)]"><section class="px-4 sm:px-6 lg:px-8 max-md:px-5 flex lg:min-h-[147px] py-4 lg:py-6"><div class="flex flex-wrap items-center justify-between gap-10 max-w-screen-2xl w-full mx-auto"><Image alt="Company logo" src={imgimages_gii_logo_webp} width="400" height="300" class="my-auto aspect-[1.01] w-[48px] lg:w-[104px] shrink-0 self-stretch object-contain" /><nav class="max-md:max-w-full my-auto min-w-[240px] flex-wrap items-end gap-10 self-stretch text-base text-white hidden lg:flex"><a href="#" width="auto" height="auto" class="">Concept</a><a href="#" width="auto" height="auto" class="">Solution</a><a href="#" width="auto" height="auto" class="">Numérique Responsable</a><a href="#" width="auto" height="auto" class="">Blog</a><a href="#" width="auto" height="auto" class="uppercase">MADE BY GREENWEB</a></nav><button width="auto" height="auto" class="block lg:hidden ml-auto"><Image alt="Company logo" src={imgimages_menu_bar_webp} width="400" height="300" class="object-contain w-8 h-8" /></button><button width="auto" height="auto" class="max-md:px-5 my-auto min-w-[240px] gap-2.5 self-stretch overflow-hidden rounded-md bg-lime-500 px-12 py-2.5 text-xl font-semibold leading-snug text-slate-800 hidden lg:block">Réserver une démo</button></div></section></div></header><main class="flex flex-col relative shrink-0 box-border h-auto empty:min-h-[30vh] before:content-[&#x27;Main&#x27;] before:absolute before:top-0 before:left-0 before:inline-block before:py-1 before:px-2 before:bg-black/20 before:text-white before:text-sm before:rounded before:!rounded-tl-none before:!rounded-bl-none mb-[1px] main-section"><section class="main-component flex flex-col bg-slate-800"><div class="px-4 sm:px-6 lg:px-8 max-md:px-5 max-md:max-w-full py-16"><div class="flex flex-col max-w-screen-2xl mx-auto"><div class="flex w-full flex-col self-center"><div class="max-md:px-5 w-[131px] max-w-full self-center whitespace-nowrap rounded-2xl bg-slate-700 px-12 py-1.5 text-center text-base leading-none text-lime-400 font-medium">date</div><h1 class="mt-10 self-center text-center text-xl lg:text-4xl font-bold text-white ">D&#x27;où vient-il?</h1><Image alt="Article main image" src={imgimages_gii_source_info_webp} width="400" height="300" class="max-md:mt-10 max-md:max-w-full mt-20 w-full rounded-lg" /><div class="mt-12"><h2 class="max-md:mt-10 self-start text-xl lg:text-3xl leading-snug lg:leading-none text-white font-medium">D&#x27;où vient-il?</h2><p class="max-md:mt-10 max-md:mr-0.5 max-md:max-w-full mt-12 leading-10 text-white lg:text-xl text-lg">Contrairement à une opinion répandue, le Lorem Ipsum n&#x27;est pas simplement du texte aléatoire. Il trouve ses racines dans une oeuvre de la littérature latine classique datant de 45 av. J.-C., le rendant vieux de 2000 ans. Un professeur du Hampden-Sydney College, en Virginie, s&#x27;est intéressé à un des mots latins les plus obscurs, consectetur, extrait d&#x27;un passage du Lorem Ipsum, et en étudiant tous les usages de ce mot dans la littérature classique, découvrit la source incontestable du Lorem Ipsum. Il provient en fait des sections 1.10.32 et 1.10.33 du "De Finibus Bonorum et Malorum" (Des Suprêmes Biens et des Suprêmes Maux) de Cicéron. Cet ouvrage, très populaire pendant la Renaissance, est un traité sur la théorie de l&#x27;éthique. Les premières lignes du Lorem Ipsum, "Lorem ipsum dolor sit amet...", proviennent de la section 1.10.32.</p></div><div class="mt-12"><h2 class="max-md:mt-10 self-start text-xl lg:text-3xl leading-snug lg:leading-none text-white font-medium">Pourquoi l&#x27;utiliser?</h2><p class="max-md:mt-10 max-md:mr-0.5 max-md:max-w-full mt-12 leading-10 text-white lg:text-xl text-lg">On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même. L&#x27;avantage du Lorem Ipsum sur un texte générique comme &#x27;Du texte. Du texte. Du texte.&#x27; est qu&#x27;il possède une distribution de lettres plus ou moins normale, et en tout cas comparable avec celle du français standard. De nombreuses suites logicielles de mise en page ou éditeurs de sites Web ont fait du Lorem Ipsum leur faux texte par défaut, et une recherche pour &#x27;Lorem Ipsum&#x27; vous conduira vers de nombreux sites qui n&#x27;en sont encore qu&#x27;à leur phase de construction. Plusieurs versions sont apparues avec le temps, parfois par accident, souvent intentionnellement (histoire d&#x27;y rajouter de petits clins d&#x27;oeil, voire des phrases embarassantes).</p></div><div class="mt-12"><h2 class="max-md:mt-10 self-start text-xl lg:text-3xl leading-snug lg:leading-none text-white font-medium">Où puis-je m&#x27;en procurer?</h2><p class="max-md:mt-10 max-md:mr-0.5 max-md:max-w-full mt-12 leading-10 text-white lg:text-xl text-lg">Plusieurs variations de Lorem Ipsum peuvent être trouvées ici ou là, mais la majeure partie d&#x27;entre elles a été altérée par l&#x27;addition d&#x27;humour ou de mots aléatoires qui ne ressemblent pas une seconde à du texte standard. Si vous voulez utiliser un passage du Lorem Ipsum, vous devez être sûr qu&#x27;il n&#x27;y a rien d&#x27;embarrassant caché dans le texte. Tous les générateurs de Lorem Ipsum sur Internet tendent à reproduire le même extrait sans fin, ce qui fait de lipsum.com le seul vrai générateur de Lorem Ipsum. Iil utilise un dictionnaire de plus de 200 mots latins, en combinaison de plusieurs structures de phrases, pour générer un Lorem Ipsum irréprochable. Le Lorem Ipsum ainsi obtenu ne contient aucune répétition, ni ne contient des mots farfelus, ou des touches d&#x27;humour.</p></div></div><div class="text-center pb-16"><button class="max-md:mt-10 mt-12 min-h-[50px] flex-col items-center justify-center text-[14px] md:text-base lg:text-xl font-semibold leading-snug text-gray-900 max-md:px-5 inline-flex max-w-full gap-2.5 overflow-hidden rounded-md bg-lime-500 transition-all px-12 py-2.5">Contactez-nous pour en savoir plus</button></div></div></div></section></main><footer class="flex flex-col relative shrink-0 box-border h-auto empty:min-h-[30vh] before:content-[&#x27;Footer&#x27;] before:absolute before:top-0 before:left-0 before:inline-block before:py-1 before:px-2 before:bg-black/20 before:text-white before:text-sm before:rounded before:!rounded-tl-none before:!rounded-bl-none mb-[1px] footer-section"><div class="footer-component w-full bg-slate-800"><div class="max-md:px-5 max-md:max-w-full min-h-[338px] px-4 sm:px-6 lg:px-8 py-6"><div class="flex w-full flex-col mx-auto max-w-screen-2xl"><div class="border border-[#AECA0E]"></div><div class="flex flex-wrap items-start"><div class="max-md:max-w-full mt-4 flex min-h-[229px] items-start gap-5 flex-col flex-shrink-0 flex-1 w-[150px]"><Image alt="gii-logo" src={imgimages_gii_logo_webp} width="400" height="300" class="w-[133px]" /><!-- --><Image alt="gii-social" src={imgimages_gii_footer_social_webp} width="400" height="300" class="mt-2 w-[73px] rounded-lg" /></div><div class="flex flex-1 z-10 gap-10 justify-center items-start self-end mt-0 min-h-[133px] max-md:mt-0 max-md:mr-2.5"><div class="flex flex-col grow shrink items-start text-sm leading-snug text-white min-w-[240px] w-[392px] max-md:max-w-full"><div class="flex gap-6 items-start"><a href="/concept" width="auto" height="auto" class="whitespace-nowrap">Concept</a><a href="/solution" width="auto" height="auto" class="whitespace-nowrap">Solution</a><a href="/numerique-respon" width="auto" height="auto" class="whitespace-nowrap">Numérique responsable</a></div><div class="flex gap-6 items-start mt-6"><a href="/blog" width="auto" height="auto" class="whitespace-nowrap">Blog</a><a href="#" width="auto" height="auto" class="whitespace-nowrap">Made by GreenWeb</a><a href="#" width="auto" height="auto" class="whitespace-nowrap">Contact</a></div><p width="auto" height="auto" class="self-stretch mt-6">Mentions légales</p></div><div class="flex flex-col grow shrink justify-between text-base rounded-xl min-h-[133px] min-w-[240px] w-[351px] max-md:max-w-full"><p width="auto" height="auto" class="font-medium text-white">Suivez l’actualité de Green It Impact</p><div class="flex gap-3 justify-center items-start mt-6 w-full leading-tight max-md:max-w-full"><input type="email" class="flex flex-1 shrink gap-2.5 items-center self-stretch px-2.5 py-3 font-light bg-gray-700 rounded-lg border border-solid basis-7 border-[color:var(--Dark-dark-300,#726E6E)] min-h-[44px] min-w-[240px] text-stone-50" placeholder="Adresse e-mail"/><button width="auto" height="auto" class="flex gap-2.5 justify-center items-center self-stretch px-6 py-3 font-semibold text-center whitespace-nowrap bg-lime-500 rounded-lg min-h-[44px] text-slate-800 w-[120px] max-md:px-5">Envoyer</button></div></div></div></div><div class="max-md:max-w-full mt-4 self-center text-xs uppercase text-white flex items-center"><p width="auto" height="auto">2024<!-- --> GREEN IT IMPACT - Site web créé par la société GreenWeb. L&#x27;ensemble des données est stocké en France par<!-- --> </p><a href="#" width="auto" height="auto" class="underline ml-1">Digital Forest</a><p width="auto" height="auto">, hébergeur éco-responsable</p></div></div></div></div></footer> </body>
+</html>
